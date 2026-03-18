@@ -1,0 +1,78 @@
+<div class="notebook">
+
+<div class="nb-cell program" name="p1">
+% Facts about travel packages
+% Facts about travel packages
+city_info(paris, france, historical, moderate_budget, mild_climate, haram).
+city_info(tokyo, japan, cultural, expensive, mild_climate, halal).
+city_info(miami, usa, beaches, expensive, hot_climate, haram).
+city_info(london, uk, historical, moderate_budget, mild_climate, halal).
+city_info(new_york_city, usa, cultural, expensive, cold_climate, halal).
+city_info(rome, italy, historical, expensive, mild_climate, halal).
+city_info(sydney, australia, beaches, expensive, mild_climate, halal).
+city_info(singapore, singapore, modern, expensive, tropical_climate, halal).
+city_info(cairo, egypt, historical, moderate_budget, hot_climate, haram).
+city_info(dubai, uae, modern, expensive, hot_climate, haram).
+city_info(istanbul, turkey, historical, moderate_budget, mild_climate, halal).
+city_info(rio_de_janeiro, brazil, beaches, moderate_budget, hot_climate, halal).
+city_info(amsterdam, netherlands, cultural, expensive, cold_climate, halal).
+city_info(hong_kong, china, modern, expensive, subtropical_climate, halal).
+city_info(vancouver, canada, scenic, expensive, cold_climate, halal).
+city_info(bangkok, thailand, cultural, moderate_budget, hot_climate, halal).
+city_info(marrakech, morocco, historical, moderate_budget, hot_climate, haram).
+city_info(athens, greece, historical, moderate_budget, mild_climate, halal).
+city_info(seoul, south_korea, modern, expensive, temperate_climate, halal).
+city_info(budapest, hungary, cultural, moderate_budget, cold_climate, haram).
+city_info(prague, czech_republic, cultural, moderate_budget, cold_climate, halal).
+city_info(cape_town, south_africa, scenic, moderate_budget, mild_climate, halal).
+city_info(oslo, norway, modern, expensive, cold_climate, haram).
+city_info(tokyo, japan, cultural, expensive, mild_climate, halal).
+city_info(osaka, japan, cultural, expensive, mild_climate, halal).
+city_info(kyoto, japan, historical, moderate_budget, mild_climate, halal).
+city_info(sapporo, japan, scenic, moderate_budget, cold_climate, halal).
+city_info(mumbai, india, cultural, moderate_budget, tropical_climate, halal).
+city_info(new_delhi, india, historical, moderate_budget, tropical_climate, halal).
+city_info(kolkata, india, cultural, moderate_budget, tropical_climate, halal).
+city_info(bangalore, india, modern, expensive, temperate_climate, halal).
+city_info(chennai, india, beaches, moderate_budget, tropical_climate, halal).
+city_info(karachi, pakistan, modern, moderate_budget, arid_climate, halal).
+city_info(lahore, pakistan, historical, moderate_budget, arid_climate, halal).
+city_info(islamabad, pakistan, modern, expensive, arid_climate, halal).
+city_info(dhaka, bangladesh, cultural, moderate_budget, tropical_climate, halal).
+city_info(colombo, sri_lanka, beaches, moderate_budget, tropical_climate, halal).
+city_info(kabul, afghanistan, historical, moderate_budget, arid_climate, halal).
+
+
+
+% Rule for recommending travel packages based on user preferences
+recommend_package(City, Country, Area, Budget, Climate, Food) :-
+    city_info(City, Country, Area, Budget, Climate, Food).
+
+interact:-
+    writeln("Welcome to the Travel Package Recommendation System!"),
+    check_input("country", Country),
+    check_input("area", Area),
+    check_input("budget", Budget),
+    check_input("climate", Climate),
+    check_input("food", Food),
+    recommend_package(City, Country, Area, Budget, Climate, Food),
+    write("Recommended Package: "), write(City), nl.
+
+check_input(Preference, Value) :-
+    writeln("Enter your preferred " -Preference ),
+    read(NewValue),
+    (verify_input(Preference, NewValue) -&gt;  
+        Value = NewValue    
+    ;   writeln("Invalid input. Please try again."), check_input(Preference, Value)
+    ).
+
+verify_input(Preference, Value) :-
+    city_info(_, Country, Area, Budget, Climate, Food),
+    ((Preference = "country", Value = Country);
+     (Preference = "area", Value = Area);
+     (Preference = "budget", Value = Budget);
+     (Preference = "climate", Value = Climate);
+     (Preference = "food", Value = Food)).
+</div>
+
+</div>
